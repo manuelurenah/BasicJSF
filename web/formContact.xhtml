@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>BasicJSF Form</title>
+    </h:head>
+    <h:body>
+        <h1>Nuevo Contacto</h1>
+        <h:form>
+            <p:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel for="name" value="Nombre: "/>
+                <p:inputText id="name" />
+                <p:outputLabel for="lastname" value="Apellido: "/>
+                <p:inputText id="lastname" />
+                <p:outputLabel for="address" value="Dirección: "/>
+                <p:inputText id="address" />
+                <p:outputLabel for="phone" value="Teléfono: "/>
+                <p:inputMask id="phone" mask="(999) 999-9999"/>
+                <p:outputLabel for="email" value="Correo: "/>
+                <p:inputText id="email" />
+                <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus"/>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

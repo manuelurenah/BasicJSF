@@ -1,10 +1,17 @@
-package com.cookiebutter.jsf.Objects;
+package com.cookiebutter.jsf.ManagedBeans;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 /**
  * Created by MEUrena on 9/10/16.
  * All rights reserved.
  */
-public class Contact {
+
+@ManagedBean(name = "formContact")
+@SessionScoped
+public class FormContactView implements Serializable {
 
     private String name;
     private String lastname;
@@ -12,12 +19,8 @@ public class Contact {
     private String phone;
     private String email;
 
-    public Contact(String name, String lastname, String address, String phone, String email) {
-        this.name = name;
-        this.lastname = lastname;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
+    public String processForm() {
+        return "index?faces-redirect=true";
     }
 
     public String getName() {
@@ -59,5 +62,4 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
