@@ -9,11 +9,45 @@
     <h:head>
         <title>BasicJSF</title>
     </h:head>
-    <h:body>
+    <h:body id="body">
         <h1>Contact List</h1>
         <p:button outcome="formContact" value="Agregar Contacto" icon=""/>
-        <p:panelGrid columns="2">
-            <p:dataTable></p:dataTable>
+        <p:panelGrid columns="2" id="main-panel">
+            <p:dataTable var="contact" value="#{index.contacts}">
+                <p:column headerText="Name">
+                    <h:outputText value="#{contact.name}" />
+                </p:column>
+
+                <p:column headerText="Last name">
+                    <h:outputText value="#{contact.lastname}" />
+                </p:column>
+
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
         </p:panelGrid>
+
+        <p:dialog header="Contact Info" id="contactDetail" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel  style="text-align:center;">
+                <p:panelGrid  columns="2" rendered="${not empty index.selectedContact}" columnClasses="label,value">
+
+                    <h:outputText value="Name" />
+                    <h:outputText value="#{index.selectedContact.name}" />
+                    <h:outputText value="Last Name" />
+                    <h:outputText value="#{index.selectedContact.lastname}" />
+                    <h:outputText value="Address" />
+                    <h:outputText value="#{index.selectedContact.address}" />
+                    <h:outputText value="Phone Number" />
+                    <h:outputText value="#{index.selectedContact.phone}" />
+                    <h:outputText value="Email" />
+                    <h:outputText value="#{index.selectedContact.email}" />
+
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+
     </h:body>
 </html>

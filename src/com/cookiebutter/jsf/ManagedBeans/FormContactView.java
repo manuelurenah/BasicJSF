@@ -1,8 +1,14 @@
 package com.cookiebutter.jsf.ManagedBeans;
 
+import com.cookiebutter.jsf.Objects.Contact;
+
+import javax.ejb.SessionContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by MEUrena on 9/10/16.
@@ -20,7 +26,25 @@ public class FormContactView implements Serializable {
     private String email;
 
     public String processForm() {
+        Contact contact = new Contact(name, lastname, address, phone, email);
+        FacesContext context = FacesContext.getCurrentInstance();
+        ArrayList<Contact> list = (ArrayList<Contact>)context.getExternalContext().getSessionMap().get("contacts");
+        if(list == null) {
+           list = new ArrayList<Contact>();
+        }
+
+        list.add(contact);
+        context.getExternalContext().getSessionMap().put("contacts", list);
+        clearForm();
         return "index?faces-redirect=true";
+    }
+
+    public void clearForm() {
+        name="";
+        lastname="";
+        address="";
+        phone="";
+        email="";
     }
 
     public String getName() {
