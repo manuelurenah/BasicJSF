@@ -10,25 +10,26 @@
         <title>BasicJSF</title>
     </h:head>
     <h:body id="body">
-        <p:panel header="Lista de Contactos">
-            <p:button outcome="formContact" value="Agregar Contacto" icon="fa fa-plus"/><br /><br />
-            <p:dataTable var="contact" value="#{index.contacts}">
-                <p:column headerText="Name">
-                    <h:outputText value="#{contact.name}" />
-                </p:column>
+        <h:form>
+            <p:panel header="Lista de Contactos">
+                <p:button outcome="formContact" value="Agregar Contacto" icon="fa fa-plus"/><br /><br />
+                <p:dataTable var="contact" value="#{index.contacts}">
+                    <p:column headerText="Name">
+                        <h:outputText value="#{contact.name}" />
+                    </p:column>
 
-                <p:column headerText="Last name">
-                    <h:outputText value="#{contact.lastname}" />
-                </p:column>
+                    <p:column headerText="Last name">
+                        <h:outputText value="#{contact.lastname}" />
+                    </p:column>
 
-                <p:column style="width:32px; text-align: center">
-                    <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
-                        <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
-                    </p:commandButton>
-                </p:column>
-            </p:dataTable>
-        </p:panel>
-
+                    <p:column style="width:32px; text-align: center">
+                        <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
+                            <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
         <p:dialog header="Contact Info" id="contactDetail" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
             <p:outputPanel  style="text-align:center;" rendered="${index.selectedContact != null}">
                 <p:panelGrid  columns="2"  columnClasses="label,value">
