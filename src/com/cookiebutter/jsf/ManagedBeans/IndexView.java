@@ -31,7 +31,7 @@ public class IndexView {
     }
 
     public void setSelectedContact(Contact selectedContact) {
-
+        System.out.println("Set contact");
         this.selectedContact = selectedContact;
     }
 }

@@ -12,27 +12,29 @@
     <h:body id="body">
         <h1>Contact List</h1>
         <p:button outcome="formContact" value="Agregar Contacto" icon=""/>
-        <p:panelGrid columns="2" id="main-panel">
-            <p:dataTable var="contact" value="#{index.contacts}">
-                <p:column headerText="Name">
-                    <h:outputText value="#{contact.name}" />
-                </p:column>
+        <h:form>
+            <p:panelGrid columns="2" id="main-panel">
+                <p:dataTable var="contact" value="#{index.contacts}">
+                    <p:column headerText="Name">
+                        <h:outputText value="#{contact.name}" />
+                    </p:column>
 
-                <p:column headerText="Last name">
-                    <h:outputText value="#{contact.lastname}" />
-                </p:column>
+                    <p:column headerText="Last name">
+                        <h:outputText value="#{contact.lastname}" />
+                    </p:column>
 
-                <p:column style="width:32px; text-align: center">
-                    <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
-                        <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
-                    </p:commandButton>
-                </p:column>
-            </p:dataTable>
-        </p:panelGrid>
+                    <p:column style="width:32px; text-align: center">
+                        <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
+                            <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panelGrid>
+        </h:form>
 
-        <p:dialog header="Contact Info" id="contactDetail" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-            <p:outputPanel  style="text-align:center;" rendered="${index.selectedContact != null}">
-                <p:panelGrid  columns="2"  columnClasses="label,value">
+        <p:dialog header="Contact Info"  widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel  id="contactDetail" style="text-align:center;">
+                <p:panelGrid  columns="2"  columnClasses="label,value" rendered="${not empty index.selectedContact}">
 
                     <h:outputText value="Name" />
                     <h:outputText value="#{index.selectedContact.name}" />
