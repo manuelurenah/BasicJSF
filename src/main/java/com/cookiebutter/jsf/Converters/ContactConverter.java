@@ -12,11 +12,12 @@ import javax.faces.convert.FacesConverter;
  * All rights reserved.
  */
 
-@FacesConverter(value = "ContactConverter")
+@FacesConverter(value = "contactConverter")
 public class ContactConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
+        System.out.println(s);
         if (s == null || s.length() == 0) {
             return null;
         }

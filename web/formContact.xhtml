@@ -10,33 +10,33 @@
         <title>BasicJSF Form</title>
     </h:head>
     <h:body>
-        <h1>Nuevo Contacto</h1>
         <h:form>
-            <p:panelGrid columns="3" cellpadding="5">
-                <p:outputLabel for="name" value="Nombre: " />
-                <p:inputText id="name" required="true" value="${formContact.name}" >
-                </p:inputText>
-                <p:message for="name" style="color: red" />
+            <p:panel header="Nuevo Contacto">
+                <p:messages autoUpdate="true"/>
+                <h:panelGrid id="grid" columns="3" cellpadding="5">
+                    <p:outputLabel for="name" value="Nombre: " />
+                    <p:inputText id="name" value="#{formContact.name}" required="true" />
+                    <p:message for="name" />
 
-                <p:outputLabel for="lastname" value="Apellido: " />
-                <p:inputText id="lastname" required="true" value="${formContact.lastname}" >
-                </p:inputText>
-                <p:message for="lastname" style="color: red" />
+                    <p:outputLabel for="lastname" value="Apellido: " />
+                    <p:inputText id="lastname" value="#{formContact.lastname}" required="true" />
+                    <p:message for="lastname" />
 
-                <p:outputLabel for="address" value="Dirección: " />
-                <p:inputText id="address" value="${formContact.address}" />
-                <h:message for="address" style="color: red" />
+                    <p:outputLabel for="address" value="Dirección: " />
+                    <p:inputText id="address" value="#{formContact.address}" />
+                    <p:message for="address" />
 
-                <p:outputLabel for="phone" value="Teléfono: " />
-                <p:inputMask id="phone" mask="(999) 999-9999" value="${formContact.phone}" />
-                <h:message for="phone" style="color: red" />
+                    <p:outputLabel for="phone" value="Teléfono: " />
+                    <p:inputMask id="phone" value="#{formContact.phone}" mask="(999) 999-9999" />
+                    <p:message for="phone" />
 
-                <p:outputLabel for="email" value="Correo: " />
-                <p:inputText id="email" value="${formContact.email}" />
-                <h:message for="email" style="color: red" />
+                    <p:outputLabel for="email" value="Correo: " />
+                    <p:inputText id="email" value="#{formContact.email}" />
+                    <p:message for="email" />
 
-                <p:commandButton validateClient="true" ajax="false" action="#{formContact.processForm()}"  value="Agregar" icon="fa fa-plus" />
-            </p:panelGrid>
+                    <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus" update="grid" validateClient="true"/>
+                </h:panelGrid>
+            </p:panel>
         </h:form>
     </h:body>
 </html>

@@ -6,6 +6,8 @@ import javax.ejb.SessionContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,12 @@ import java.util.List;
 @SessionScoped
 public class FormContactView implements Serializable {
 
+    @Size(min = 3, max = 15)
     private String name;
+    @Size(min = 3, max = 15)
     private String lastname;
     private String address;
+    @Size(min = 10, max = 14)
     private String phone;
     private String email;
 
