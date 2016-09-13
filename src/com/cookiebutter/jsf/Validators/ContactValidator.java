@@ -15,7 +15,7 @@ import javax.faces.validator.ValidatorException;
  * All rights reserved.
  */
 
-@FacesValidator(value = "ContactValidator")
+@FacesValidator(value = "contactValidator")
 public class ContactValidator implements Validator {
 
     @Override
