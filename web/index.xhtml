@@ -22,7 +22,7 @@
                     <h:outputText value="#{contact.lastname}" />
                 </p:column>
 
-                <p:column style="width:32px;text-align: center">
+                <p:column style="width:32px; text-align: center">
                     <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
                         <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
                     </p:commandButton>
@@ -31,8 +31,8 @@
         </p:panelGrid>
 
         <p:dialog header="Contact Info" id="contactDetail" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-            <p:outputPanel  style="text-align:center;">
-                <p:panelGrid  columns="2" rendered="${not empty index.selectedContact}" columnClasses="label,value">
+            <p:outputPanel  style="text-align:center;" rendered="${index.selectedContact != null}">
+                <p:panelGrid  columns="2"  columnClasses="label,value">
 
                     <h:outputText value="Name" />
                     <h:outputText value="#{index.selectedContact.name}" />
