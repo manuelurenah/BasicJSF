@@ -2,6 +2,8 @@ package com.cookiebutter.jsf.ManagedBeans;
 
 import com.cookiebutter.jsf.Objects.Contact;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.SessionContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -30,9 +32,22 @@ public class FormContactView implements Serializable {
     private String phone;
     private String email;
 
+    @PostConstruct
+    private void viewDidAppear() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
+    }
+
+    @PreDestroy
+    private void viewWillDisappear() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
+    }
+
     public String processForm() {
         Contact contact = new Contact(name, lastname, address, phone, email);
         FacesContext context = FacesContext.getCurrentInstance();
+        System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
         ArrayList<Contact> list = (ArrayList<Contact>)context.getExternalContext().getSessionMap().get("contacts");
         if(list == null) {
            list = new ArrayList<Contact>();
@@ -44,12 +59,12 @@ public class FormContactView implements Serializable {
         return "index?faces-redirect=true";
     }
 
-    public void clearForm() {
-        name="";
-        lastname="";
-        address="";
-        phone="";
-        email="";
+    private void clearForm() {
+        name = "";
+        lastname = "";
+        address = "";
+        phone = "";
+        email = "";
     }
 
     public String getName() {

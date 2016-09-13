@@ -10,9 +10,8 @@
         <title>BasicJSF</title>
     </h:head>
     <h:body id="body">
-        <h1>Contact List</h1>
-        <p:button outcome="formContact" value="Agregar Contacto" icon=""/>
-        <p:panelGrid columns="2" id="main-panel">
+        <p:panel header="Lista de Contactos">
+            <p:button outcome="formContact" value="Agregar Contacto" icon="fa fa-plus"/><br /><br />
             <p:dataTable var="contact" value="#{index.contacts}">
                 <p:column headerText="Name">
                     <h:outputText value="#{contact.name}" />
@@ -28,7 +27,7 @@
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
-        </p:panelGrid>
+        </p:panel>
 
         <p:dialog header="Contact Info" id="contactDetail" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
             <p:outputPanel  style="text-align:center;" rendered="${index.selectedContact != null}">

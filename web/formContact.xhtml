@@ -12,7 +12,6 @@
     <h:body>
         <h:form>
             <p:panel header="Nuevo Contacto">
-                <p:messages autoUpdate="true"/>
                 <h:panelGrid id="grid" columns="3" cellpadding="5">
                     <p:outputLabel for="name" value="Nombre: " />
                     <p:inputText id="name" value="#{formContact.name}" required="true" />
@@ -34,7 +33,7 @@
                     <p:inputText id="email" value="#{formContact.email}" />
                     <p:message for="email" />
 
-                    <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus" update="grid" validateClient="true"/>
+                    <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus" ajax="false" validateClient="true"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>
