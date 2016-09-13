@@ -15,15 +15,13 @@
             <p:panelGrid columns="3" cellpadding="5">
                 <p:outputLabel for="name" value="Nombre: " />
                 <p:inputText id="name" required="true" value="${formContact.name}" >
-                    <f:validator validatorId="contactValidator"/>
                 </p:inputText>
-                <h:message for="name" style="color: red" />
+                <p:message for="name" style="color: red" />
 
                 <p:outputLabel for="lastname" value="Apellido: " />
                 <p:inputText id="lastname" required="true" value="${formContact.lastname}" >
-                    <f:validator validatorId="contactValidator"/>
                 </p:inputText>
-                <h:message for="lastname" style="color: red" />
+                <p:message for="lastname" style="color: red" />
 
                 <p:outputLabel for="address" value="Dirección: " />
                 <p:inputText id="address" value="${formContact.address}" />
@@ -37,7 +35,7 @@
                 <p:inputText id="email" value="${formContact.email}" />
                 <h:message for="email" style="color: red" />
 
-                <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus" />
+                <p:commandButton validateClient="true" ajax="false" action="#{formContact.processForm()}"  value="Agregar" icon="fa fa-plus" />
             </p:panelGrid>
         </h:form>
     </h:body>
