@@ -6,23 +6,34 @@ package com.cookiebutter.jsf.Objects;
  */
 public class Contact {
 
+    private int id;
     private String name;
     private String lastname;
     private String address;
     private String phone;
     private String email;
 
-    public Contact(String name, String lastname) {
+    public Contact(int id, String name, String lastname) {
+        this.id = id;
         this.name = name;
         this.lastname = lastname;
     }
 
-    public Contact(String name, String lastname, String address, String phone, String email) {
+    public Contact(int id, String name, String lastname, String address, String phone, String email) {
+        this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.address = address;
         this.phone = phone;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

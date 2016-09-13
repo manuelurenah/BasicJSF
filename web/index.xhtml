@@ -12,8 +12,8 @@
     <h:body id="body">
         <h:form>
             <p:panel header="Lista de Contactos">
-                <p:button outcome="formContact" value="Agregar Contacto" icon="fa fa-plus"/><br /><br />
-                <p:dataTable var="contact" value="#{index.contacts}">
+                <p:button outcome="formContact" value="Agregar Contacto" icon="ui-icon-plus"/><br /><br />
+                <p:dataTable id="contacts_table" var="contact" value="#{index.contacts}">
                     <p:column headerText="Name">
                         <h:outputText value="#{contact.name}" />
                     </p:column>
@@ -22,9 +22,12 @@
                         <h:outputText value="#{contact.lastname}" />
                     </p:column>
 
-                    <p:column style="width:32px; text-align: center">
+                    <p:column style="width:64px; text-align: center">
                         <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
                             <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
+                        </p:commandButton>
+                        <p:commandButton update="contacts_table" action="#{index.deleteContact()}" icon="ui-icon-close" title="Delete">
+                            <f:setPropertyActionListener value="#{contact}" target="#{index.selectedContact}" />
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>

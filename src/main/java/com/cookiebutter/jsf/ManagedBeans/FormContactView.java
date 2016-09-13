@@ -23,6 +23,9 @@ import java.util.List;
 @SessionScoped
 public class FormContactView implements Serializable {
 
+    public static int idCounter = 1;
+
+    private int id;
     @Size(min = 3, max = 15)
     private String name;
     @Size(min = 3, max = 15)
@@ -45,7 +48,7 @@ public class FormContactView implements Serializable {
     }
 
     public String processForm() {
-        Contact contact = new Contact(name, lastname, address, phone, email);
+        Contact contact = new Contact(idCounter, name, lastname, address, phone, email);
         FacesContext context = FacesContext.getCurrentInstance();
         System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
         ArrayList<Contact> list = (ArrayList<Contact>)context.getExternalContext().getSessionMap().get("contacts");
@@ -55,6 +58,7 @@ public class FormContactView implements Serializable {
 
         list.add(contact);
         context.getExternalContext().getSessionMap().put("contacts", list);
+        idCounter++;
         clearForm();
         return "index?faces-redirect=true";
     }
@@ -65,6 +69,14 @@ public class FormContactView implements Serializable {
         address = "";
         phone = "";
         email = "";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

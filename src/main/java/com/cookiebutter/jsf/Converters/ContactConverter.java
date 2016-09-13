@@ -1,5 +1,6 @@
 package com.cookiebutter.jsf.Converters;
 
+import com.cookiebutter.jsf.ManagedBeans.FormContactView;
 import com.cookiebutter.jsf.Objects.Contact;
 
 import javax.faces.component.UIComponent;
@@ -26,7 +27,7 @@ public class ContactConverter implements Converter {
         String name = fullname[0];
         String lastname = fullname[1];
 
-        Contact contact = new Contact(name, lastname);
+        Contact contact = new Contact(FormContactView.idCounter+1, name, lastname);
         return contact;
     }
 

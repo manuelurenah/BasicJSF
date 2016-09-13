@@ -33,4 +33,11 @@ public class IndexView {
 
         this.selectedContact = selectedContact;
     }
+
+    public void deleteContact() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ArrayList<Contact> contacts = (ArrayList<Contact>) context.getExternalContext().getSessionMap().get("contacts");
+        contacts.remove(selectedContact);
+        context.getExternalContext().getSessionMap().put("contacts", contacts);
+    }
 }
