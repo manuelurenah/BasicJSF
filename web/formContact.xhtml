@@ -13,17 +13,27 @@
         <h1>Nuevo Contacto</h1>
         <h:form>
             <p:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel for="name" value="Nombre: "/>
-                <p:inputText id="name" value="${formContact.name}" />
-                <p:outputLabel for="lastname" value="Apellido: "/>
-                <p:inputText id="lastname" value="${formContact.lastname}"/>
-                <p:outputLabel for="address" value="Dirección: "/>
+                <p:outputLabel for="name" value="Nombre: " />
+                <p:inputText id="name" required="true" value="${formContact.name}" />
+                <h:message for="name" style="color: red" />
+
+                <p:outputLabel for="lastname" value="Apellido: " />
+                <p:inputText id="lastname" required="true" value="${formContact.lastname}" />
+                <h:message for="lastname" style="color: red" />
+
+                <p:outputLabel for="address" value="Dirección: " />
                 <p:inputText id="address" value="${formContact.address}" />
-                <p:outputLabel for="phone" value="Teléfono: "/>
-                <p:inputMask id="phone" mask="(999) 999-9999" value="${formContact.phone}"/>
-                <p:outputLabel for="email" value="Correo Electronico"/>
+                <h:message for="address" style="color: red" />
+
+                <p:outputLabel for="phone" value="Teléfono: " />
+                <p:inputMask id="phone" mask="(999) 999-9999" value="${formContact.phone}" />
+                <h:message for="phone" style="color: red" />
+
+                <p:outputLabel for="email" value="Correo: " />
                 <p:inputText id="email" value="${formContact.email}" />
-                <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus"/>
+                <h:message for="email" style="color: red" />
+
+                <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="fa fa-plus" />
             </p:panelGrid>
         </h:form>
     </h:body>

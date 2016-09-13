@@ -12,6 +12,11 @@ public class Contact {
     private String phone;
     private String email;
 
+    public Contact(String name, String lastname) {
+        this.name = name;
+        this.lastname = lastname;
+    }
+
     public Contact(String name, String lastname, String address, String phone, String email) {
         this.name = name;
         this.lastname = lastname;

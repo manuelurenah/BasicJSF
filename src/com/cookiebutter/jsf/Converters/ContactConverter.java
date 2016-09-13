@@ -17,13 +17,22 @@ public class ContactConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        return null;
+        if (s == null || s.length() == 0) {
+            return null;
+        }
+
+        String[] fullname = s.split(" ");
+        String name = fullname[0];
+        String lastname = fullname[1];
+
+        Contact contact = new Contact(name, lastname);
+        return contact;
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         Contact contact = (Contact) o;
-        return contact.getName();
+        return contact.getName() + " " + contact.getLastname();
     }
 
 }
