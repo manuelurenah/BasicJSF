@@ -15,16 +15,6 @@ import java.util.ArrayList;
 public class IndexView {
     private Contact selectedContact;
 
-    public ArrayList<Contact> getContacts() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        return (ArrayList<Contact>)context.getExternalContext().getSessionMap().get("contacts");
-    }
-
-    public void setContacts(ArrayList<Contact> contacts) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().getSessionMap().put("contacts", contacts);
-    }
-
     public Contact getSelectedContact() {
         return selectedContact;
     }
@@ -32,12 +22,5 @@ public class IndexView {
     public void setSelectedContact(Contact selectedContact) {
 
         this.selectedContact = selectedContact;
-    }
-
-    public void deleteContact() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ArrayList<Contact> contacts = (ArrayList<Contact>) context.getExternalContext().getSessionMap().get("contacts");
-        contacts.remove(selectedContact);
-        context.getExternalContext().getSessionMap().put("contacts", contacts);
     }
 }

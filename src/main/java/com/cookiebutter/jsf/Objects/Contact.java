@@ -6,6 +6,8 @@ package com.cookiebutter.jsf.Objects;
  */
 public class Contact {
 
+    public static int idCounter = 1;
+
     private int id;
     private String name;
     private String lastname;
@@ -13,19 +15,22 @@ public class Contact {
     private String phone;
     private String email;
 
-    public Contact(int id, String name, String lastname) {
-        this.id = id;
+    public Contact(String name, String lastname) {
+        this.id = idCounter;
         this.name = name;
         this.lastname = lastname;
+        idCounter ++;
     }
 
-    public Contact(int id, String name, String lastname, String address, String phone, String email) {
-        this.id = id;
+    public Contact(String name, String lastname, String address, String phone, String email) {
+        this.id = idCounter;
         this.name = name;
         this.lastname = lastname;
         this.address = address;
         this.phone = phone;
         this.email = email;
+
+        idCounter ++;
     }
 
     public int getId() {

@@ -4,15 +4,12 @@ import com.cookiebutter.jsf.Objects.Contact;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.SessionContext;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Size;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by MEUrena on 9/10/16.
@@ -23,8 +20,9 @@ import java.util.List;
 @SessionScoped
 public class FormContactView implements Serializable {
 
-    public static int idCounter = 1;
-
+    @ManagedProperty(value="#{contactService}")
+    private
+    ContactService contactService;
     private int id;
     @Size(min = 3, max = 15)
     private String name;
@@ -48,18 +46,9 @@ public class FormContactView implements Serializable {
     }
 
     public String processForm() {
-        Contact contact = new Contact(idCounter, name, lastname, address, phone, email);
-        FacesContext context = FacesContext.getCurrentInstance();
-        System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
-        ArrayList<Contact> list = (ArrayList<Contact>)context.getExternalContext().getSessionMap().get("contacts");
-        if(list == null) {
-           list = new ArrayList<Contact>();
-        }
-
-        list.add(contact);
-        context.getExternalContext().getSessionMap().put("contacts", list);
-        idCounter++;
-        clearForm();
+        Contact contact = new Contact(name, lastname, address, phone, email);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        getContactService().add(contact);
         return "index?faces-redirect=true";
     }
 
@@ -117,5 +106,14 @@ public class FormContactView implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public ContactService getContactService() {
+        return contactService;
+    }
+
+    public void setContactService(ContactService contactService) {
+        this.contactService = contactService;
     }
 }

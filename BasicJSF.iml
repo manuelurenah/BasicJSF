@@ -26,7 +26,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.1.163" level="application_server_libraries" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.1.163 - JSF" level="application_server_libraries" />
-    <orderEntry type="library" name="PrimeFaces-5.2 (2)" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.2" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.extensions:all-themes:1.0.8" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.primefaces.themes:afterdark:1.0.8" level="project" />
@@ -71,5 +70,7 @@
     <orderEntry type="library" name="Maven: commons-digester:commons-digester:1.8.1" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
+    <orderEntry type="library" name="PrimeFaces-5.2 (3)" level="project" />
   </component>
 </module>
