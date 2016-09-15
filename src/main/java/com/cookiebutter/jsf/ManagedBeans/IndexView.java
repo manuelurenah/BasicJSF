@@ -23,4 +23,20 @@ public class IndexView {
 
         this.selectedContact = selectedContact;
     }
+
+    public String saveAction() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ArrayList<Contact> contacts = (ArrayList<Contact>) context.getExternalContext().getSessionMap().get("contacts");
+
+        for (Contact contact : contacts) {
+            contact.setEditable(false);
+        }
+
+        return "index?faces-redirect=true";
+    }
+
+    public String editAction(Contact contact) {
+        contact.setEditable(true);
+        return null;
+    }
 }

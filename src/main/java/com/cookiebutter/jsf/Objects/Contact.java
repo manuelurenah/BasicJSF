@@ -15,6 +15,16 @@ public class Contact {
     private String phone;
     private String email;
 
+    private boolean editable;
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+
     public Contact(String name, String lastname) {
         this.id = idCounter;
         this.name = name;

@@ -23,32 +23,43 @@
                     </p:column>
 
                     <p:column style="width:64px; text-align: center">
-                        <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="View">
+                        <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" icon="ui-icon-search" title="Ver">
                             <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
                         </p:commandButton>
-                        <p:commandButton update="contacts_table" action="#{contactService.deleteContact(contact)}" icon="ui-icon-close" title="Delete">
+                        <p:commandButton update=":contactDetail" oncomplete="PF('contactDialog').show()" action="#{index.editAction(index.selectedContact)}" icon="ui-icon-pencil" title="Editar">
+                            <f:setPropertyActionListener value="#{contact}"  target="#{index.selectedContact}" />
                         </p:commandButton>
+                        <p:commandButton update="contacts_table" action="#{contactService.deleteContact(contact)}" icon="ui-icon-close" title="Eliminar" />
                     </p:column>
                 </p:dataTable>
             </p:panel>
         </h:form>
         <p:dialog header="Contact Info" id="contactDetail" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-            <p:outputPanel  style="text-align:center;" rendered="${index.selectedContact != null}">
-                <p:panelGrid  columns="2"  columnClasses="label,value">
+            <h:form>
+                <p:outputPanel  style="text-align:center;" rendered="${index.selectedContact != null}">
+                    <p:panelGrid  columns="2"  columnClasses="label,value">
 
-                    <h:outputText value="Name" />
-                    <h:outputText value="#{index.selectedContact.name}" />
-                    <h:outputText value="Last Name" />
-                    <h:outputText value="#{index.selectedContact.lastname}" />
-                    <h:outputText value="Address" />
-                    <h:outputText value="#{index.selectedContact.address}" />
-                    <h:outputText value="Phone Number" />
-                    <h:outputText value="#{index.selectedContact.phone}" />
-                    <h:outputText value="Email" />
-                    <h:outputText value="#{index.selectedContact.email}" />
+                        <h:outputText value="Name" />
+                        <h:inputText value="#{index.selectedContact.name}" rendered="#{index.selectedContact.editable}" />
+                        <h:outputText value="#{index.selectedContact.name}" rendered="#{not index.selectedContact.editable}" />
+                        <h:outputText value="Last Name" />
+                        <h:inputText value="#{index.selectedContact.lastname}" rendered="#{index.selectedContact.editable}" />
+                        <h:outputText value="#{index.selectedContact.lastname}" rendered="#{not index.selectedContact.editable}" />
+                        <h:outputText value="Address" />
+                        <h:inputText value="#{index.selectedContact.address}" rendered="#{index.selectedContact.editable}" />
+                        <h:outputText value="#{index.selectedContact.address}" rendered="#{not index.selectedContact.editable}" />
+                        <h:outputText value="Phone Number" />
+                        <h:inputText value="#{index.selectedContact.phone}" rendered="#{index.selectedContact.editable}" />
+                        <h:outputText value="#{index.selectedContact.phone}" rendered="#{not index.selectedContact.editable}" />
+                        <h:outputText value="Email" />
+                        <h:inputText value="#{index.selectedContact.email}" rendered="#{index.selectedContact.editable}" />
+                        <h:outputText value="#{index.selectedContact.email}" rendered="#{not index.selectedContact.editable}" />
 
-                </p:panelGrid>
-            </p:outputPanel>
+                        <p:commandButton value="Guardar" action="#{index.saveAction()}" rendered="#{index.selectedContact.editable}" validateClient="true"/>
+
+                    </p:panelGrid>
+                </p:outputPanel>
+            </h:form>
         </p:dialog>
 
     </h:body>

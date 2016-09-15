@@ -34,21 +34,15 @@ public class FormContactView implements Serializable {
     private String email;
 
     @PostConstruct
-    private void viewDidAppear() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
-    }
+    public void init() {
 
-    @PreDestroy
-    private void viewWillDisappear() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        System.out.println(context.getExternalContext().getSessionMap().get("contacts"));
     }
 
     public String processForm() {
         Contact contact = new Contact(name, lastname, address, phone, email);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         getContactService().add(contact);
+        clearForm();
         return "index?faces-redirect=true";
     }
 
@@ -107,7 +101,6 @@ public class FormContactView implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public ContactService getContactService() {
         return contactService;
