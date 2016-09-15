@@ -3,6 +3,7 @@ package com.cookiebutter.jsf.ManagedBeans;
 import com.cookiebutter.jsf.Objects.Contact;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 @ManagedBean(name = "index")
 @SessionScoped
 public class IndexView {
+    @ManagedProperty(value = "#{contactService}")
+    private ContactService contactService;
     private Contact selectedContact;
 
     public Contact getSelectedContact() {
@@ -25,18 +28,28 @@ public class IndexView {
     }
 
     public String saveAction() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ArrayList<Contact> contacts = (ArrayList<Contact>) context.getExternalContext().getSessionMap().get("contacts");
-
+        ArrayList<Contact> contacts = contactService.getContacts();
         for (Contact contact : contacts) {
             contact.setEditable(false);
         }
 
+        contactService.setContacts(contacts);
+
         return "index?faces-redirect=true";
     }
+
+
 
     public String editAction(Contact contact) {
         contact.setEditable(true);
         return null;
+    }
+
+    public ContactService getContactService() {
+        return contactService;
+    }
+
+    public void setContactService(ContactService contactService) {
+        this.contactService = contactService;
     }
 }

@@ -23,7 +23,7 @@ public class FormContactView implements Serializable {
     @ManagedProperty(value="#{contactService}")
     private
     ContactService contactService;
-    private int id;
+    private int id = -1;
     @Size(min = 3, max = 15)
     private String name;
     @Size(min = 3, max = 15)
@@ -41,12 +41,20 @@ public class FormContactView implements Serializable {
     public String processForm() {
         Contact contact = new Contact(name, lastname, address, phone, email);
         FacesContext facesContext = FacesContext.getCurrentInstance();
+
+        if(id != -1) {
+            contact.setId(id);
+            Contact toRemove = contactService.find(id);
+            contactService.deleteContact(toRemove);
+        }
+
         getContactService().add(contact);
         clearForm();
         return "index?faces-redirect=true";
     }
 
-    private void clearForm() {
+    public void clearForm() {
+        id = -1;
         name = "";
         lastname = "";
         address = "";
@@ -108,5 +116,15 @@ public class FormContactView implements Serializable {
 
     public void setContactService(ContactService contactService) {
         this.contactService = contactService;
+    }
+
+    public String setEditContact(Contact contact) {
+        this.id = contact.getId();
+        this.name = contact.getName();
+        this.lastname = contact.getLastname();
+        this.email = contact.getEmail();
+        this.address = contact.getAddress();
+        this.phone = contact.getPhone();
+        return "formContact?faces-redirect=true";
     }
 }

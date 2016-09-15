@@ -13,6 +13,7 @@
         <h:form>
             <p:panel header="Nuevo Contacto">
                 <h:panelGrid id="grid" columns="3" cellpadding="5">
+                    <h:inputHidden value="${formContact.id}"/>
                     <p:outputLabel for="name" value="Nombre: " />
                     <p:inputText id="name" value="#{formContact.name}" required="true" />
                     <p:message for="name" />
@@ -33,7 +34,8 @@
                     <p:inputText id="email" value="#{formContact.email}" />
                     <p:message for="email" />
 
-                    <p:commandButton action="#{formContact.processForm()}" value="Agregar" icon="ui-icon-plus" ajax="false" validateClient="true"/>
+                    <p:commandButton action="#{formContact.processForm()}" value="${formContact.id == -1 ? 'Agregar' : 'Editar'}" icon="ui-icon-plus" ajax="false" validateClient="true"/>
+                    <p:button href="/" onclick="#{formContact.clearForm()}" value="Cancelar" ajax="false" validateClient="false"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>

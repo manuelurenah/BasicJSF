@@ -15,7 +15,7 @@ public class Contact {
     private String phone;
     private String email;
 
-    private boolean editable;
+    private boolean editable = false;
 
     public boolean isEditable() {
         return editable;
