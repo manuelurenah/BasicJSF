@@ -11,6 +11,23 @@
     </h:head>
     <h:body id="body">
         <h:form>
+            <p:panel header="Nuevo Contacto Rapido.">
+                <h:panelGrid id="grid" columns="3" cellpadding="5">
+                    <p:outputLabel for="name" value="Nombre: " />
+                    <p:inputText id="name" value="#{formContact.name}" required="true" requiredMessage="Este campo es requerido. "/>
+                    <p:message for="name" />
+
+                    <p:outputLabel for="lastname" value="Apellido: " />
+                    <p:inputText id="lastname" value="#{formContact.lastname}" required="true" requiredMessage="Este campo es requerido." />
+                    <p:message for="lastname" />
+
+                    <p:commandButton action="#{formContact.processForm()}" value="Agregar Contacto Rapido" icon="ui-icon-plus" ajax="false" validateClient="true"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+        <br/>
+        <br/>
+        <h:form>
             <p:panel header="Lista de Contactos">
                 <p:button outcome="formContact" value="Agregar Contacto" icon="ui-icon-plus"/><br /><br />
                 <p:dataTable id="contacts_table" var="contact" value="#{contactService.contacts}">

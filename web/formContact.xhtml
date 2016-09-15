@@ -11,15 +11,16 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:panel header="Nuevo Contacto">
+            <p:panel header="Nuevo Contacto ">
+                <h:inputHidden value="${formContact.id}"/>
                 <h:panelGrid id="grid" columns="3" cellpadding="5">
-                    <h:inputHidden value="${formContact.id}"/>
+
                     <p:outputLabel for="name" value="Nombre: " />
-                    <p:inputText id="name" value="#{formContact.name}" required="true" />
+                    <p:inputText id="name" value="#{formContact.name}" required="true" validatorMessage="Este campo es requerido." />
                     <p:message for="name" />
 
                     <p:outputLabel for="lastname" value="Apellido: " />
-                    <p:inputText id="lastname" value="#{formContact.lastname}" required="true" />
+                    <p:inputText id="lastname" value="#{formContact.lastname}" required="true" validatorMessage="Este campo es requerido." />
                     <p:message for="lastname" />
 
                     <p:outputLabel for="address" value="Dirección: " />
@@ -27,7 +28,7 @@
                     <p:message for="address" />
 
                     <p:outputLabel for="phone" value="Teléfono: " />
-                    <p:inputMask id="phone" value="#{formContact.phone}" mask="(999) 999-9999" />
+                    <p:inputMask id="phone" value="#{formContact.phone}" validator="cookieButter.phoneValidator" mask="(999) 999-9999" />
                     <p:message for="phone" />
 
                     <p:outputLabel for="email" value="Correo: " />

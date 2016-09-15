@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -24,12 +26,11 @@ public class FormContactView implements Serializable {
     private
     ContactService contactService;
     private int id = -1;
-    @Size(min = 3, max = 15)
+    @Size(min = 3, message = "El nombre propuesto es demasiado corto.")
     private String name;
-    @Size(min = 3, max = 15)
+    @Size(min = 3, message = "El apellido propuesto es demasiado corto.")
     private String lastname;
     private String address;
-    @Size(min = 10, max = 14)
     private String phone;
     private String email;
 
