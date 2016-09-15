@@ -11,13 +11,13 @@
     </h:head>
     <h:body id="body">
         <h:form>
-            <p:panel header="Nuevo Contacto Rapido.">
+            <p:panel header="Nuevo Contacto Rapido">
                 <h:panelGrid id="grid" columns="3" cellpadding="5">
-                    <p:outputLabel for="name" value="Nombre: " />
+                    <p:outputLabel for="name" value="Nombre:" />
                     <p:inputText id="name" value="#{formContact.name}" required="true" requiredMessage="Este campo es requerido. "/>
                     <p:message for="name" />
 
-                    <p:outputLabel for="lastname" value="Apellido: " />
+                    <p:outputLabel for="lastname" value="Apellido:" />
                     <p:inputText id="lastname" value="#{formContact.lastname}" required="true" requiredMessage="Este campo es requerido." />
                     <p:message for="lastname" />
 

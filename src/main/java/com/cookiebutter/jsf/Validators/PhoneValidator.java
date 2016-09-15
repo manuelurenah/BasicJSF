@@ -15,7 +15,7 @@ import javax.faces.validator.ValidatorException;
 public class PhoneValidator implements Validator {
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        String phone = (String)o;
+        String phone = (String) o;
         if(!phone.equals("") && !(phone.length() >= 10 && phone.length() <= 14)) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Telefono no válido",
                     "El telefono ha de tener entre 10 - 14 digitos.");

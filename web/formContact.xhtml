@@ -11,31 +11,33 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:panel header="Nuevo Contacto ">
-                <h:inputHidden value="${formContact.id}"/>
+            <p:panel header="#{formContact.id == -1 ? 'Nuevo Contacto' : 'Editar Contacto'}">
+                <h:inputHidden value="#{formContact.id}"/>
                 <h:panelGrid id="grid" columns="3" cellpadding="5">
 
-                    <p:outputLabel for="name" value="Nombre: " />
-                    <p:inputText id="name" value="#{formContact.name}" required="true" validatorMessage="Este campo es requerido." />
+                    <p:outputLabel for="name" value="Nombre:" />
+                    <p:inputText id="name" value="#{formContact.name}" required="true" requiredMessage="Este campo es requerido." />
                     <p:message for="name" />
 
-                    <p:outputLabel for="lastname" value="Apellido: " />
-                    <p:inputText id="lastname" value="#{formContact.lastname}" required="true" validatorMessage="Este campo es requerido." />
+                    <p:outputLabel for="lastname" value="Apellido:" />
+                    <p:inputText id="lastname" value="#{formContact.lastname}" required="true" requiredMessage="Este campo es requerido." />
                     <p:message for="lastname" />
 
-                    <p:outputLabel for="address" value="Dirección: " />
+                    <p:outputLabel for="address" value="Dirección:" />
                     <p:inputText id="address" value="#{formContact.address}" />
                     <p:message for="address" />
 
-                    <p:outputLabel for="phone" value="Teléfono: " />
-                    <p:inputMask id="phone" value="#{formContact.phone}" validator="cookieButter.phoneValidator" mask="(999) 999-9999" />
+                    <p:outputLabel for="phone" value="Teléfono:" />
+                    <p:inputMask id="phone" value="#{formContact.phone}" mask="(999) 999-9999">
+                        <f:validator validatorId="cookieButter.phoneValidator" for="phone"/>
+                    </p:inputMask>
                     <p:message for="phone" />
 
-                    <p:outputLabel for="email" value="Correo: " />
+                    <p:outputLabel for="email" value="Correo:" />
                     <p:inputText id="email" value="#{formContact.email}" />
                     <p:message for="email" />
 
-                    <p:commandButton action="#{formContact.processForm()}" value="${formContact.id == -1 ? 'Agregar' : 'Editar'}" icon="ui-icon-plus" ajax="false" validateClient="true"/>
+                    <p:commandButton action="#{formContact.processForm()}" value="#{formContact.id == -1 ? 'Agregar' : 'Guardar'}" icon="#{formContact.id == -1 ? 'ui-icon-plus' : 'ui-icon-check'}" ajax="false" validateClient="true"/>
                     <p:button href="/" onclick="#{formContact.clearForm()}" value="Cancelar" ajax="false" validateClient="false"/>
                 </h:panelGrid>
             </p:panel>

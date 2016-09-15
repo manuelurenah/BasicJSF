@@ -34,11 +34,6 @@ public class FormContactView implements Serializable {
     private String phone;
     private String email;
 
-    @PostConstruct
-    public void init() {
-
-    }
-
     public String processForm() {
         Contact contact = new Contact(name, lastname, address, phone, email);
         FacesContext facesContext = FacesContext.getCurrentInstance();

@@ -23,26 +23,7 @@ public class IndexView {
     }
 
     public void setSelectedContact(Contact selectedContact) {
-
         this.selectedContact = selectedContact;
-    }
-
-    public String saveAction() {
-        ArrayList<Contact> contacts = contactService.getContacts();
-        for (Contact contact : contacts) {
-            contact.setEditable(false);
-        }
-
-        contactService.setContacts(contacts);
-
-        return "index?faces-redirect=true";
-    }
-
-
-
-    public String editAction(Contact contact) {
-        contact.setEditable(true);
-        return null;
     }
 
     public ContactService getContactService() {
